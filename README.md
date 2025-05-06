@@ -4,7 +4,7 @@
 
 - **Alesia Hajrulla**
 
-_All development was completed independently. The project required approximately 25–30 hours of work, covering backend, frontend, testing, and integration._
+_All development was completed independently._
 
 ---
 
@@ -16,6 +16,7 @@ This full-stack application allows users to manage tasks with a simple and intui
 - Marking tasks as done or to do
 - Searching and filtering tasks
 - Paginated view for better UX
+- User authentication with login, logout, and signup functionality
 
 The backend is built using **Django REST Framework**, while the frontend uses **Svelte** with **Tailwind CSS**.
 
@@ -23,12 +24,15 @@ The backend is built using **Django REST Framework**, while the frontend uses **
 
 ## Functionalities
 
-- ✅ Create a task
-- ✅ Edit or delete an existing task
-- ✅ Toggle task status: _To Do_ ↔ _Done_
-- ✅ Filter by status (All, To Do, Done)
-- ✅ Search by task title
-- ✅ View tasks across pages with pagination
+- Create a task
+- Edit or delete an existing task
+- Filter by status (All, To Do, Done)
+- Search by task title
+- View tasks across pages with pagination
+- **User Authentication**:
+  - **Login**: Users can log in with email and password
+  - **Signup**: Users can create a new account
+  - **Logout**: Users can log out and be redirected to the login page
 
 ---
 
@@ -37,15 +41,14 @@ The backend is built using **Django REST Framework**, while the frontend uses **
 - API developed with Django 5.2 and Django REST Framework
 - SQLite3 used as local database
 - CORS enabled to allow frontend access
-- All API endpoints are public (no login/auth)
 - Pagination implemented using `PageNumberPagination`
 
 ### How to Run (Backend)
 
 ```bash
 cd taskmanager
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv venvv
+source venvv/bin/activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
@@ -62,6 +65,7 @@ Custom search endpoint: `http://localhost:8000/api/tasks/search/` (POST)
 - Live search and dropdown filter
 - Modal form for task creation/editing
 - Pagination component fixed at the bottom
+- User authentication with login, logout, and signup forms
 
 ### How to Run (Frontend)
 
@@ -73,7 +77,7 @@ npm run dev
 
 App will run at: `http://localhost:5173/`
 
-Make sure the backend is running at `localhost:8000`.
+The backend is running at `localhost:8000`.
 
 ---
 
@@ -82,35 +86,50 @@ Make sure the backend is running at `localhost:8000`.
 ```
 project-root/
 │
-├── taskmanager/           # Backend Django API
-│   ├── tasks/             # Django app (models, views, serializers)
-│   ├── db.sqlite3         # Local database
+├── taskmanager/              # Backend Django API
+│   ├── tasks/                # Django app (models, views, serializers)
+│   │   ├── __init__.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── serializers.py
+│   │   ├── tests.py
+│   │   └── views.py
+│   ├── users/                 # Django app for user-related functionalities
+│   │   ├── __init__.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── serializers.py
+│   │   ├── tests.py
+│   │   └── views.py
+│   ├── db.sqlite3            # Local SQLite database
 │   ├── manage.py
 │   └── requirements.txt
 │
-└── task-frontend/         # Frontend Svelte app
-    ├── src/components/    # TaskTable.svelte, TaskForm.svelte
-    ├── src/stores.js      # Svelte store for tasks
+└── task-frontend/            # Frontend Svelte app
+    ├── src/                  # Source code
+    │   ├── assets/           # Static assets
+    │   ├── components/       # TaskTable.svelte, TaskForm.svelte
+    │   ├── pages/            # Dashboard, Login, Signup components
+    │   │   ├── dashboard.svelte
+    │   │   ├── login.svelte
+    │   │   └── signup.svelte
+    │   ├── stores.js         # Svelte store for tasks and user authentication
+    │   ├── app.css           # Tailwind CSS customizations
+    │   ├── App.svelte        # Main application UI
+    │   └── main.js
+    ├── public/                # Public assets (e.g., index.html)
+    ├── node_modules/          # Node.js modules
     ├── package.json
-    └── App.svelte         # Main application UI
+    └── vite-env.d.ts         # TypeScript environment configuration
 ```
 
 ---
 
 ## Notes
 
-- This project is meant for **local development** and **demonstration**.
-- No authentication or user-specific filtering is implemented.
 - You can reset the database anytime using:
 
 ```bash
 rm db.sqlite3
 python manage.py migrate
 ```
-
----
-
-## License
-
-This project is provided for academic and training purposes.
-Feel free to reuse and adapt with credit to the original author.

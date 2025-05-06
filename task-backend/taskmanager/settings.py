@@ -15,6 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     "django.contrib.contenttypes",
     "tasks",
+    "users",
     "rest_framework",  
     "corsheaders",
     "rest_framework_simplejwt"

@@ -9,8 +9,6 @@
   export let location  = useLocation();
   export let navigate = useNavigate();
 
-
-
   let showForm = false;
   let editTask = null;
   let filter = 'todo';
@@ -93,13 +91,14 @@
   function logout() {
     user.set(null);
     localStorage.removeItem('authToken');
+    localStorage.removeItem('user');
     navigate('/login');
   }
+
 
   onMount(() => {
     if (!$user) {
       navigate('/login');
-      return;
     }
 
     searchTasks();
