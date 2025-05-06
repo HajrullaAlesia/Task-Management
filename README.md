@@ -13,7 +13,6 @@ _All development was completed independently._
 This full-stack application allows users to manage tasks with a simple and intuitive interface. It supports:
 
 - Adding, editing, and deleting tasks
-- Marking tasks as done or to do
 - Searching and filtering tasks
 - Paginated view for better UX
 - User authentication with login, logout, and signup functionality
