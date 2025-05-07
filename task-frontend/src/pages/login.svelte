@@ -21,9 +21,8 @@ async function handleLogin() {
     }
 
     const data = await res.json();
-
     
-    login({ email, token: data.access }); 
+    login(data.access ); 
 
     navigate('/dashboard');
   } catch (e) {

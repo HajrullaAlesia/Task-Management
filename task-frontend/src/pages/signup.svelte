@@ -36,7 +36,7 @@
       
       const data = await res.json();
 
-      login(data.user);
+      login(data.access);
 
       success = 'Signup successful!';
 
