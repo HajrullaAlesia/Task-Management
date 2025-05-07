@@ -1,13 +1,17 @@
 <script>
   import { createEventDispatcher, beforeUpdate } from 'svelte';
-  export let editTask = null;
   const dispatch = createEventDispatcher();
   const API_URL = 'http://localhost:8000/api/tasks';
 
   let title = '';
   let is_done = false;
   let deadline = '';
+ /**
+   * @typedef {{ id: number, title: string, is_done: boolean, deadline: string }} Task
+   */
 
+  /** @type {Task | null} */
+  export let editTask = null;
   
   let previousTaskId = null;
 
